@@ -655,7 +655,7 @@ void UVCCameraDriver::frameCallback(uvc_frame_t* frame) {
     CHECK_NOTNULL(rgb_data_);
     memcpy(&(image.data[0]), rgb_data_, frame->width * frame->height * 3);
 #else
-    uvc_error_t conv_ret = any2rgb(frame, frame_buffer_);
+    uvc_error_t conv_ret = uvc_any2rgb(frame, frame_buffer_);
     if (conv_ret != UVC_SUCCESS) {
       uvc_perror(conv_ret, "Couldn't convert frame to RGB");
       return;

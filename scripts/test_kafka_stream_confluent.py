@@ -2,11 +2,18 @@ import rospy
 import json
 import numpy as np
 import time
+import struct
 
 from confluent_kafka import Producer, KafkaException, KafkaError
 from confluent_kafka.admin import AdminClient, NewTopic
 from sensor_msgs.msg import Image
 from rospy_message_converter import message_converter, json_message_converter
+
+def serialize_key(key):
+    """
+    Serializes an integer key to a bytes object.
+    """
+    return struct.pack('>i', key) if key is not None else None
 
 class VideoStreamer:
     def __init__(self):
@@ -26,9 +33,11 @@ class VideoStreamer:
         self.producer = Producer(conf)
     
         # Create the topic if it does not exist
-        topic = "test_video"
-        new_topic = NewTopic(topic, num_partitions=1, replication_factor=1)
+        self.topic = "test_video"
+        new_topic = NewTopic(self.topic, num_partitions=1, replication_factor=1)
         fs = self.admin_client.create_topics([new_topic])
+
+        self.msg_key = serialize_key(rospy.get_param('~robot_id', 0))
 
         self.status = True
         self.index = 0
@@ -53,7 +62,7 @@ class VideoStreamer:
 
             # Send the message, if get error handle it
             try:
-                self.producer.produce('test_video', value=msg_bytes)
+                self.producer.produce(self.topic, value=msg_bytes, key=self.msg_key)
             except KafkaException as e:
                 print(e)
             except BufferError as e:
@@ -65,13 +74,6 @@ class VideoStreamer:
         self.index += 1
         if self.index == 4:
             self.index = 0
-        
-
-
-
-        # msg_dict = message_converter.convert_ros_message_to_dictionary(msg)
-        # print("Sending Message")
-        # self.producer.send('test_video', msg_dict)
 
     def run(self):
         rospy.spin()

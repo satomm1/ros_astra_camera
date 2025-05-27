@@ -9,7 +9,7 @@ This package allows the usage of Orbbec 3D cameras with ROS Kinetic, Melodic, an
 
 - Please refer directly to ROS [wiki](http://wiki.ros.org/ROS/Installation).
 
-### other dependencies
+### Other Dependencies (No need to do this if using the Docker Image)
 
 - Install dependencies (be careful with your ROS distribution)
 
@@ -30,7 +30,7 @@ This package allows the usage of Orbbec 3D cameras with ROS Kinetic, Melodic, an
   sudo ldconfig
   ```
 
-## Getting start
+## Getting Started
 
 - Create a ros workspace( if you don't have one).
 

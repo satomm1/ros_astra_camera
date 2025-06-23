@@ -2,13 +2,13 @@
     <!-- unique camera name-->
     <arg name="camera_name" default="camera"/>
     <!-- Hardware depth registration -->
-    <arg name="depth_align" default="false"/>
-    <arg name="serial_number" default=""/>
+    <arg name="depth_align" default="true"/>
+    <arg name="serial_number" default="AS37342002X"/>
     <arg name="device_num" default="1"/>
     <arg name="vendor_id" default="0x2bc5"/>
     <arg name="product_id" default=""/>
     <arg name="enable_point_cloud" default="true"/>
-    <arg name="enable_point_cloud_xyzrgb" default="false"/>
+    <arg name="enable_point_cloud_xyzrgb" default="true"/>
     <arg name="connection_delay" default="100"/>
     <arg name="color_width" default="640"/>
     <arg name="color_height" default="480"/>
@@ -25,7 +25,7 @@
     <arg name="ir_width" default="640"/>
     <arg name="ir_height" default="480"/>
     <arg name="ir_fps" default="30"/>
-    <arg name="enable_ir" default="true"/>
+    <arg name="enable_ir" default="false"/>
     <arg name="ir_format" default="Y10"/>
     <arg name="flip_ir" default="false"/>
     <arg name="publish_tf" default="true"/>

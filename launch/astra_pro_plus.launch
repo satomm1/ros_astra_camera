@@ -3,7 +3,7 @@
     <arg name="camera_name" default="camera"/>
     <!-- Hardware depth registration -->
     <arg name="depth_align" default="true"/>
-    <arg name="serial_number" default="AS37342002X"/>
+    <arg name="serial_number" default=""/>
     <arg name="device_num" default="1"/>
     <arg name="vendor_id" default="0x2bc5"/>
     <arg name="product_id" default=""/>
